@@ -4,38 +4,36 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git branch: 'main', 
-                    url: 'https://github.com/Code-walah-07/demo-html.git'
+                git 'https://github.com/Code-walah-07/demo-html.git'
             }
         }
 
-        stage('Setup Python Environment') {
+        stage('Setup Environment') {
             steps {
-                bat 'python -m venv venv'
-                bat '.\\venv\\Scripts\\activate && pip install -r requirements.txt'
+                echo 'No environment setup required for HTML project.'
             }
         }
 
-        stage('Run Python Script') {
+        stage('Run Script') {
             steps {
-                bat '.\\venv\\Scripts\\activate && python demo-file.py'
+                echo 'Running HTML project...'
+                // Example: if you have a build step (like copying files)
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat '.\\venv\\Scripts\\activate && pytest tests/'
+                echo 'No tests defined for this HTML project.'
             }
         }
     }
 
     post {
         success {
-            echo '✅ Build succeeded!'
+            echo 'Build completed successfully!'
         }
         failure {
-            echo '❌ Build failed. Check logs.'
+            echo ' Build failed. Check logs.'
         }
     }
 }
-
